@@ -1,5 +1,5 @@
 {
     "participant_id": "P0001",
-    "height_m": 1.91,
-    "weight_kg": 90.7
+    "height_in_meters": 1.91,
+    "weight__in_kg": 90.7
 }

@@ -5,31 +5,44 @@
 # SPL Open Data
 The SPL Open Data repository acts as a collection of biomechanics datasets collected by Maple Leaf Sports & Entertainment's (MLSE) Sport Performance Lab (SPL) in Toronto, Ontario, Canada. Through the open-sourcing of this data, SPL's goal is to provide raw markerless motion capture data typically used by sports biomechanists to the general public in an effort to improve data equity and analytical biomechanical skills in the community.
 
-For more information on SPL, please visit the [lab's homepage](https://www.mlsedigital.com/innovation-initiatives/sport-performance-lab).
+## Quick Start
 
-# Quick Start
-
-Git clone this package using:
+Clone this repository using:
 
 ```
 git clone https://github.com/mlsedigital/SPL-Open-Data.git
 ```
 
-# File Structure
+## File Structure
 
-The data in this repository is structured in the following tree:
+Assuming that you have cloned the repository, the naming convention of the files is as follows. The data in this repository is structured in the following tree:
 
 ```
-sport/
-├─ action_type/
+[sport]/
+├─ [action_type]/
 │  ├─ participant_information.json
-│  ├─ participant_data/
-│  │  ├─ trial_data
+│  ├─ [participant_id]/
+│  │  ├─ trial_data/
+|  |     ├─ [trial_id].json
 ```
 
-where, trial data is unique to each individual participant and anonymized, demographic information relating to all participants is referenced in the participant_information.json file.
+where, trial data is unique to each individual participant and anonymized, demographic information relating to all participants is referenced in the `participant_information.json` file.
 
-# License
+## Data summary
+
+*Last updated: September 2024*
+
+Each "Action" will typically feature a corresponding README file, with relevant documentation.
+
+<center>
+
+| Sport | Action | Participants | Trials (total) |
+| :-: | :-: | :-: | :-: |
+| Basketball | [Free throw](./basketball/freethrow/) | 1 | 125
+
+</center>
+
+## License
 
 License
 CC BY-NC-SA 4.0

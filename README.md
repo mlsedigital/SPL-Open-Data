@@ -53,9 +53,9 @@ movements across phases.
 3. Bayesian Inference: 
     - Hierarchical Bayesian model to capture phase-specific distributions for joint kinematics. Account for shot number (fatigue proxy) as a covariate to model fatigue’s impact on joint angles, velocities, and kinematic chain activations.
 4. Visualization
-  - Phase-specific Joint Angle Distributions: Visualize how joint angles (e.g., elbow, wrist) shift across phases and fatigue levels.
-  - Posterior Distribution Plots: Show Bayesian credible intervals for kinematic chain activations and velocities.
-  - Interactive Dashboard (PyShiny/Dash): Explore phase-wise results, segment-wise kinematic changes, and fatigue progression.
+    - Phase-specific Joint Angle Distributions: Visualize how joint angles (e.g., elbow, wrist) shift across phases and fatigue levels.
+    - Posterior Distribution Plots: Show Bayesian credible intervals for kinematic chain activations and velocities.
+    - Interactive Dashboard (PyShiny/Dash): Explore phase-wise results, segment-wise kinematic changes, and fatigue progression.
 
 
 

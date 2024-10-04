@@ -48,17 +48,14 @@ movements across phases.
 3. Kinematic Chain Status: Open/closed status for upper and lower body during each phase.
 
 ### Methodology
-1. Segmentation:
-- Use key markers (e.g., knee, wrist) to identify the boundaries between shooting phases.
-2. Open/Closed Chain Identification:
-- Detect foot contact (closed) or free limb movement (open) based on marker data for each phase.
-3. Bayesian Inference:
-- Hierarchical Bayesian model to capture phase-specific distributions for joint kinematics.
-- Account for shot number (fatigue proxy) as a covariate to model fatigue’s impact on joint angles, velocities, and kinematic chain activations.
+1. Segmentation: Use key markers (e.g., knee, wrist) to identify the boundaries between shooting phases.
+2. Open/Closed Chain Identification: Detect foot contact (closed) or free limb movement (open) based on marker data for each phase.
+3. Bayesian Inference: 
+    - Hierarchical Bayesian model to capture phase-specific distributions for joint kinematics. Account for shot number (fatigue proxy) as a covariate to model fatigue’s impact on joint angles, velocities, and kinematic chain activations.
 4. Visualization
-- Phase-specific Joint Angle Distributions: Visualize how joint angles (e.g., elbow, wrist) shift across phases and fatigue levels.
-- Posterior Distribution Plots: Show Bayesian credible intervals for kinematic chain activations and velocities.
-- Interactive Dashboard (PyShiny/Dash): Explore phase-wise results, segment-wise kinematic changes, and fatigue progression.
+  - Phase-specific Joint Angle Distributions: Visualize how joint angles (e.g., elbow, wrist) shift across phases and fatigue levels.
+  - Posterior Distribution Plots: Show Bayesian credible intervals for kinematic chain activations and velocities.
+  - Interactive Dashboard (PyShiny/Dash): Explore phase-wise results, segment-wise kinematic changes, and fatigue progression.
 
 
 

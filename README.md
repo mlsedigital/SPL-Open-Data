@@ -23,11 +23,11 @@ This study hopes to leverage the SPL Open Data (TODO: Add link or maybe not) to 
 
 ### Segment the Shooting Process:
 1. Break down each shot into non-overlapping phases:
-  - Preparation/Set-Up
-  - Downward Movement
-  - Push-Off
-  - Shooting/Release
-  - Follow-Through
+      - Preparation/Set-Up
+      - Downward Movement
+      - Push-Off
+      - Shooting/Release
+      - Follow-Through
 
 ### Identify Kinematic Chain Status:
 

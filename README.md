@@ -30,7 +30,7 @@ where, trial data is unique to each individual participant and anonymized, demog
 
 ## Data summary
 
-*Last updated: September 2024*
+*Last updated: March 2026*
 
 Each "Action" will typically feature a corresponding README file, with relevant documentation.
 
@@ -38,7 +38,7 @@ Each "Action" will typically feature a corresponding README file, with relevant 
 
 | Sport | Action | Participants | Trials (total) |
 | :-: | :-: | :-: | :-: |
-| Basketball | [Free throw](./basketball/freethrow/) | 1 | 125
+| Basketball | [Free throw](./basketball/freethrow/) | 5 | 583
 
 </center>
 

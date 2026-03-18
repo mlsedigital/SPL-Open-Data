@@ -36,9 +36,9 @@ Each "Action" will typically feature a corresponding README file, with relevant 
 
 <center>
 
-| Sport | Action | Participants | Trials (total) |
-| :-: | :-: | :-: | :-: |
-| Basketball | [Free throw](./basketball/freethrow/) | 5 | 583
+| Sport | Action | Participants (total) | Trials (total) | Sessions (total)
+| :-: | :-: | :-: | :-: | :-:
+| Basketball | [Free throw](./basketball/freethrow/) | 5 | 583 | 2
 
 </center>
 

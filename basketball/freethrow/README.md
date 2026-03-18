@@ -8,10 +8,10 @@ The trials are in the `data/` folder in the current directory. They are organize
 
 ## Session Information
 
-| Session | Participants | Trials (total) | Usage
-| :-: | :-: | :-: | :-:
-| 2025-12-18 | 5 (P0001-P0005) | 458 | [2026 SPLxUTSPAN Data Challenge](https://www.kaggle.com/competitions/spl-utspan-data-challenge-2026)
-| 2024-08-28 | 1 (P0001) | 125
+| Session | Participants | Trials (total) | Sampling Rate| Usage
+| :-: | :-: | :-: | :-: | :-:
+| 2025-12-18 | 5 (P0001-P0005) | 458 | 60fps | [2026 SPLxUTSPAN Data Challenge](https://www.kaggle.com/competitions/spl-utspan-data-challenge-2026)
+| 2024-08-28 | 1 (P0001) | 125 | 30fps |
 
 
 

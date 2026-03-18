@@ -6,6 +6,15 @@
 
 The trials are in the `data/` folder in the current directory. They are organized as JSON files, with the naming convention `BB_FT_P0001_T000X.json`, where `X` refers to a trial ID. Trial IDs are simply increasing integers from `1` to the number of trials that the participant was a part of. We note here that trial IDs are in chronological order, and each participant's trials were taken in a single session, typically over the course of 2-3 hours. 
 
+## Session Information
+
+| Session | Participants | Trials (total)
+| :-: | :-: | :-: |
+| 2025-12-18 | 5 (P0001-P0005) | 458
+| 2024-08-28 | 1 (P0001) | 125
+
+
+
 ## Coordinate system and Units
 
 For the pose keypoints and ball `xyz` positions, numbers are provided in **feet**, in accordance with the measurements provided in the NBA handbook. 

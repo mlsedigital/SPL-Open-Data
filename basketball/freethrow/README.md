@@ -35,8 +35,8 @@ Ball tracking is provided through `x`, `y`, and `z` coordinates of the center of
 **NOTE**: As the ball enters and leaves our capture volume (while ball is being passed to the shooter and post-release), the ball data might be noisy. The cameras in our motion capture system were optimized to focus on capturing the biomechanical movements of the shooter. 
 
 Additionally, we provide two data points relating to the result of the free throw:
-1. `x` and `y` coordinates of the ball landing on the hoop, measured with the front of the hoop as the origin, and the coordinate system shown in the figure below. These numbers are provided in **inches**. The point can be thought of as the location that the ball makes contact with the plane of the hoop.
-2. The entry angle of the ball, again at the point when the ball breaks through the plane of the hoop. This number is measured in **degrees**. See the angle convention in the image below.
+1. `x` and `y` coordinates of the ball on the hoop, measured with the front of the hoop as the origin, and the coordinate system shown in the figure below. These numbers are provided in **inches**. The location can be thought of as the theoretical depth and left-right location that the center of the ball would pass the 10ft plane of the hoop.
+2. The entry angle of the ball. This measurement is the angle of the ball with respect to the horizontal at the theoretical point where the center of the ball would pass the 10ft plane of the hoop. This number is measured in **degrees**. See the angle convention in the image below.
 
 <center> <img src="./assets/ball_coords.png", width=400> </center>
 <center <figcaption> Hoop images taken from Dimensions.com  </figcaption> </center>

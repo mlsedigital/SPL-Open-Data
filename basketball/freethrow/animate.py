@@ -44,6 +44,44 @@ connections = [
     ("L_1STFINGER", "L_5THFINGER"),
 ]
 
+JOINT_ALIASES = {
+    "R_EYE": ["RIGHT_EYE"],
+    "L_EYE": ["LEFT_EYE"],
+    "R_EAR": ["RIGHT_EAR"],
+    "L_EAR": ["LEFT_EAR"],
+    "R_SHOULDER": ["RIGHT_SHOULDER"],
+    "L_SHOULDER": ["LEFT_SHOULDER"],
+    "R_ELBOW": ["RIGHT_ELBOW"],
+    "L_ELBOW": ["LEFT_ELBOW"],
+    "R_WRIST": ["RIGHT_WRIST"],
+    "L_WRIST": ["LEFT_WRIST"],
+    "R_HIP": ["RIGHT_HIP"],
+    "L_HIP": ["LEFT_HIP"],
+    "R_KNEE": ["RIGHT_KNEE"],
+    "L_KNEE": ["LEFT_KNEE"],
+    "R_ANKLE": ["RIGHT_ANKLE"],
+    "L_ANKLE": ["LEFT_ANKLE"],
+    "R_1STTOE": ["RIGHT_BIG_TOE"],
+    "L_1STTOE": ["LEFT_BIG_TOE"],
+    "R_5THTOE": ["RIGHT_SMALL_TOE"],
+    "L_5THTOE": ["LEFT_SMALL_TOE"],
+    "R_CALC": ["RIGHT_HEEL"],
+    "L_CALC": ["LEFT_HEEL"],
+    "R_1STFINGER": ["RIGHT_FIRST_FINGER_MCP"],
+    "L_1STFINGER": ["LEFT_FIRST_FINGER_MCP"],
+    "R_5THFINGER": ["RIGHT_FIFTH_FINGER_MCP"],
+    "L_5THFINGER": ["LEFT_FIFTH_FINGER_MCP"],
+}
+
+
+def _resolve_joint_name(joint_name, available_joints):
+    if joint_name in available_joints:
+        return joint_name
+    for alias in JOINT_ALIASES.get(joint_name, []):
+        if alias in available_joints:
+            return alias
+    return None
+
 
 def animate_trial(
     path_to_json,
@@ -128,8 +166,28 @@ def animate_trial(
 
     # For convenience, we will cast everything to numpy arrays here, but you can keep them as lists if you prefer.
     for joint in player_joint_dict:
-        player_joint_dict[joint] = np.array(player_joint_dict[joint])
-    ball_data_array = np.array(ball_data_array)
+        player_joint_dict[joint] = np.array(player_joint_dict[joint], dtype=float)
+    ball_data_array = np.array(ball_data_array, dtype=float)
+    available_joints = set(player_joint_dict.keys())
+
+    resolved_connections = []
+    seen_connections = set()
+    for part1, part2 in connections:
+        resolved_part1 = _resolve_joint_name(part1, available_joints)
+        resolved_part2 = _resolve_joint_name(part2, available_joints)
+        if resolved_part1 is None or resolved_part2 is None:
+            continue
+        connection = (resolved_part1, resolved_part2)
+        if connection in seen_connections:
+            continue
+        seen_connections.add(connection)
+        resolved_connections.append(connection)
+
+    if not resolved_connections:
+        raise ValueError("No valid connections available for the current trial.")
+
+    right_hip_joint = _resolve_joint_name("R_HIP", available_joints)
+    left_hip_joint = _resolve_joint_name("L_HIP", available_joints)
 
     # Animate the data
     fig = plt.figure(figsize=(8, 8))
@@ -145,25 +203,30 @@ def animate_trial(
     ax.view_init(elev=elev, azim=azim)
 
     # Prepare the lines to be updated
-    lines = {
-        connection: ax.plot([], [], [], c=player_color, lw=player_lw)[0]
-        for connection in connections
-    }
+    lines = [
+        ax.plot([], [], [], c=player_color, lw=player_lw)[0]
+        for _ in resolved_connections
+    ]
 
     (ball,) = ax.plot([], [], [], "o", markersize=ball_size, c=ball_color)
 
     def update(frame):
 
         # Use the average of the right and left hip to center the view.
-        rh_xy = player_joint_dict["R_HIP"][frame][:2]
-        lh_xy = player_joint_dict["L_HIP"][frame][:2]
-        mh_xy = (rh_xy + lh_xy) / 2
+        if right_hip_joint is not None and left_hip_joint is not None:
+            rh_xy = player_joint_dict[right_hip_joint][frame][:2]
+            lh_xy = player_joint_dict[left_hip_joint][frame][:2]
+            mh_xy = (rh_xy + lh_xy) / 2
+        else:
+            # Fallback to any available joint if hip markers are unavailable.
+            first_joint = next(iter(player_joint_dict))
+            mh_xy = player_joint_dict[first_joint][frame][:2]
 
         ax.set_xlim([mh_xy[0] - xbuffer, mh_xy[0] + xbuffer])
         ax.set_ylim([mh_xy[1] - ybuffer, mh_xy[1] + ybuffer])
 
         # Update the line data for each connection
-        for connection in connections:
+        for line, connection in zip(lines, resolved_connections):
             part1, part2 = connection
             x = [
                 player_joint_dict[part1][frame, 0],
@@ -177,7 +240,7 @@ def animate_trial(
                 player_joint_dict[part1][frame, 2],
                 player_joint_dict[part2][frame, 2],
             ]
-            lines[connection].set_data_3d(x, y, z)
+            line.set_data_3d(x, y, z)
 
         # Update ball data
         x = ball_data_array[frame, 0]
@@ -202,5 +265,9 @@ def animate_trial(
     plt.subplots(layout="constrained")
     plt.close()
 
-    anim = FuncAnimation(fig, update, frames=N_frames, interval=1000 / 30)
+    sampling_rate = data.get("sampling_rate", 30)
+    if not isinstance(sampling_rate, (float, int)) or sampling_rate <= 0:
+        sampling_rate = 30
+
+    anim = FuncAnimation(fig, update, frames=N_frames, interval=1000 / sampling_rate)
     return anim

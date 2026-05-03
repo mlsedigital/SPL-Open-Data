@@ -139,3 +139,23 @@ anim = animate_trial("./data/2025-12-18/P0001/BB_FT_P0001_T0001.json")
 ```
 
 <img src="./assets/shot_animation.gif">
+
+## Testing
+
+If `pytest` is not installed in your environment, install it first:
+
+```bash
+python -m pip install pytest
+```
+
+From the repository root, run:
+
+```bash
+python -m pytest -q tests/test_animate.py
+```
+
+To run all tests in the `tests/` directory:
+
+```bash
+python -m pytest -q tests
+```

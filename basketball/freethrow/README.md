@@ -125,6 +125,37 @@ We provide basic utilities to animate free throw trials. We use the 3D basketbal
 ```
 pip install mplbasketball
 ```
-The `animate_trial()` is defined in `utils/animate.py`, and produces a GIF like the one below:
+The `animate_trial()` function is defined in `animate.py`, and produces a GIF like the one below.
+
+Recent updates to `animate_trial()`:
+- Animation playback now uses each trial's `sampling_rate` (e.g. 30fps and 60fps are handled automatically).
+- Joint names are resolved across common schema variants (e.g. `R_HIP` and `RIGHT_HIP`) for better cross-session compatibility.
+
+Example:
+```python
+from animate import animate_trial
+
+anim = animate_trial("./data/2025-12-18/P0001/BB_FT_P0001_T0001.json")
+```
 
 <img src="./assets/shot_animation.gif">
+
+## Testing
+
+If `pytest` is not installed in your environment, install it first:
+
+```bash
+python -m pip install pytest
+```
+
+From the repository root, run:
+
+```bash
+python -m pytest -q tests/test_animate.py
+```
+
+To run all tests in the `tests/` directory:
+
+```bash
+python -m pytest -q tests
+```
